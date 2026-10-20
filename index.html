@@ -233,7 +233,7 @@ const chapters = [
      fact:"Индийский ресторан и бар, халяль."}
    ]},
   {id:"countryside", title:"За городом", arm:"Գյուղ", tone:"t-country",
-   blurb:"Поездки на день: Севан, Бюракан, Дилижан, Гарни.",
+   blurb:"Поездки на день: Севан, Бюракан, Дилижан, Гарни, Лори.",
    places:[
     {name:"Kogovit", link:IG("kogovit"), where:"Цовагюх, Севан", kicker:"Чайный дом",
      says:"Чайный дом в горах над Севаном."},
@@ -252,7 +252,9 @@ const chapters = [
     {name:"Cabinet", link:IG("cabinet.dilijan"), where:"Дилижан", kicker:"Ресторан и кафе",
      fact:"В отреставрированной правительственной резиденции 1930-х. Терраса, уголок с винилом, европейская кухня с армянскими нотами."},
     {name:"7 Qar", link:IG("7qar.garni"), where:"Гарни", kicker:"Вид на храм",
-     fact:"Терраса с видом на храм Гарни и ущелье. Хоровац, сухой лаваш с домашним сыром, можно посмотреть, как пекут лаваш в тонире."}
+     fact:"Терраса с видом на храм Гарни и ущелье. Хоровац, сухой лаваш с домашним сыром, можно посмотреть, как пекут лаваш в тонире."},
+    {name:"Shakaryan Rancho", link:IG("shakaryanrancho"), where:"Дсех, Лори", kicker:"Ранчо и ресторан",
+     fact:"Ранчо с рестораном и номерами в деревне Дсех, в Лори."}
    ]}
 ];
 
@@ -271,7 +273,7 @@ const EN_CH = {
   coffee:["Coffee & work","Good coffee, a table and Wi-Fi."],
   lunch:["Lunch","From Cascade terraces to the best khinkali in town."],
   dinner:["Dinner","Steak, wine, Georgian and Indian food, sushi delivered."],
-  countryside:["Countryside","Day trips: Sevan, Byurakan, Dilijan, Garni."]
+  countryside:["Countryside","Day trips: Sevan, Byurakan, Dilijan, Garni, Lori."]
 };
 
 /* English text per card, keyed "section:name". Fields: where, kicker, says, fact, name (only if different). */
@@ -316,7 +318,8 @@ const EN = {
   "countryside:ZipWine":{where:"Byurakan, Aragatsotn", kicker:"Zipline & wine", fact:"Eco-village with ziplines, wine tasting and hikes."},
   "countryside:Conservatory":{where:"Dilijan", kicker:"Greenhouse café", fact:"Café upstairs in a big greenhouse, with herbs grown on site. Breakfast, specialty coffee, natural wine on the balcony."},
   "countryside:Cabinet":{where:"Dilijan", kicker:"Restaurant & café", fact:"In a restored 1930s government residence. Terrace, vinyl corner, European food with Armenian touches."},
-  "countryside:7 Qar":{where:"Garni", kicker:"Temple view", fact:"Terrace overlooking Garni Temple and the gorge. Khorovats, dry lavash with homemade cheese, and lavash baked in the tonir."}
+  "countryside:7 Qar":{where:"Garni", kicker:"Temple view", fact:"Terrace overlooking Garni Temple and the gorge. Khorovats, dry lavash with homemade cheese, and lavash baked in the tonir."},
+  "countryside:Shakaryan Rancho":{where:"Dsegh, Lori", kicker:"Ranch & restaurant", fact:"A ranch with a restaurant and rooms in Dsegh village, Lori."}
 };
 
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
