@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ереван и не только</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=Onest:wght@400;500;600;700&family=Noto+Serif+Armenian:wght@500;700&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: an Instagram-style feed. Story rail on top, then six chapters (near Adonts → countryside), each a grid of post cards that open the place's account. */
+:root{
+  --bg:#F1EAE7;
+  --surface:#FBF7F5;
+  --ink:#24161D;
+  --muted:#76626B;
+  --line:#DCCFCB;
+  --apricot:#E07A2F;
+  --pom:#A3243B;
+  --t-home:#E8C6CF;
+  --t-breakfast:#F3C9A0;
+  --t-coffee:#D9C3AE;
+  --t-lunch:#C9D8B6;
+  --t-dinner:#3B2230;
+  --t-country:#BFD3D6;
+  --t-ink-dark:#2A1A22;
+  --t-ink-light:#F7EDE8;
+  --display:"Prata", Georgia, "Times New Roman", serif;
+  --body:"Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --arm:"Noto Serif Armenian", "Prata", Georgia, serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#181115; --surface:#221920; --ink:#F3E9EB; --muted:#B39FA8; --line:#3A2C34;
+    --apricot:#F29A55; --pom:#E0566B;
+    --t-home:#4A2A35; --t-breakfast:#5A3A22; --t-coffee:#43342A; --t-lunch:#33402B; --t-dinner:#4A2738; --t-country:#264046;
+    --t-ink-dark:#F7EDE8; --t-ink-light:#F7EDE8;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#181115; --surface:#221920; --ink:#F3E9EB; --muted:#B39FA8; --line:#3A2C34;
+  --apricot:#F29A55; --pom:#E0566B;
+  --t-home:#4A2A35; --t-breakfast:#5A3A22; --t-coffee:#43342A; --t-lunch:#33402B; --t-dinner:#4A2738; --t-country:#264046;
+  --t-ink-dark:#F7EDE8; --t-ink-light:#F7EDE8;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 56px}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--apricot);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto}
+
+header.masthead{padding-block:36px 8px;display:grid;gap:10px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px, 8vw, 76px);line-height:1;margin:0;text-wrap:balance}
+h1 .arm{font-family:var(--arm);font-weight:700;color:var(--apricot);display:block;font-size:.42em;margin-top:10px;letter-spacing:.02em}
+.lede{max-width:58ch;color:var(--muted);margin:4px 0 0}
+
+.rail-box{margin-block:18px 6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail-box::-webkit-scrollbar{display:none}
+.rail{display:flex;gap:16px;padding:6px 2px 10px;width:max-content}
+.story{display:grid;justify-items:center;gap:6px;text-decoration:none;width:74px}
+.ring{width:70px;height:70px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg, var(--apricot), var(--pom), var(--apricot));transition:transform .2s ease}
+.story:hover .ring{transform:scale(1.05)}
+.ring > span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;border:3px solid var(--bg);font-family:var(--display);font-size:24px}
+.story small{font-size:11px;color:var(--muted);max-width:74px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+nav.chapters{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);display:flex;gap:8px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+nav.chapters a{text-decoration:none;font-weight:600;font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.chapters a:hover{border-color:var(--apricot);color:var(--apricot)}
+
+section.chapter{padding-top:44px;scroll-margin-top:110px}
+.chapter-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(28px, 4.5vw, 40px);margin:0;line-height:1.1}
+h2 .arm{font-family:var(--arm);font-size:.55em;color:var(--muted);margin-left:10px;font-weight:500}
+.chapter-head p{margin:0;color:var(--muted);font-size:14px;max-width:44ch}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(min(100%, 260px), 1fr));gap:20px}
+
+.post{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;min-width:0;transition:transform .2s ease, box-shadow .2s ease}
+a.post:hover{transform:translateY(-3px);box-shadow:0 10px 28px -14px rgba(36,22,29,.35)}
+.post-top{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.avatar{width:34px;height:34px;flex:none;border-radius:50%;padding:2px;background:conic-gradient(from 210deg, var(--apricot), var(--pom), var(--apricot))}
+.avatar span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;border:2px solid var(--surface);font-family:var(--display);font-size:14px}
+.who{min-width:0;display:grid;line-height:1.25}
+.who b{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.who small{font-size:12px;color:var(--muted)}
+.tile{aspect-ratio:1/1;max-width:100%;display:grid;align-content:space-between;padding:20px}
+.tile .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.75}
+.tile .big{font-family:var(--display);font-size:clamp(30px, 5vw, 40px);line-height:1.05;text-wrap:balance;overflow-wrap:anywhere}
+.tile .where{font-size:13px;font-weight:500;opacity:.85}
+.t-home{background:var(--t-home);color:var(--t-ink-dark)}
+.t-breakfast{background:var(--t-breakfast);color:var(--t-ink-dark)}
+.t-coffee{background:var(--t-coffee);color:var(--t-ink-dark)}
+.t-lunch{background:var(--t-lunch);color:var(--t-ink-dark)}
+.t-dinner{background:var(--t-dinner);color:var(--t-ink-light)}
+.t-country{background:var(--t-country);color:var(--t-ink-dark)}
+.caption{padding:14px 16px 6px;font-size:14px;display:grid;gap:6px}
+.caption p{margin:0}
+.says{font-family:var(--display);font-size:15px;line-height:1.45}
+.says{border-left:2px solid var(--apricot);padding-left:10px}
+.fact{color:var(--muted);font-size:13px}
+.open{margin-top:auto;padding:12px 16px 16px;font-weight:600;font-size:14px;color:var(--pom);display:flex;align-items:center;gap:6px}
+a.post:hover .open{color:var(--apricot)}
+.open.none{color:var(--muted);font-weight:500}
+.chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid var(--apricot);color:var(--apricot);margin-left:6px;vertical-align:2px}
+
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;max-width:70ch}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.masthead{grid-template-columns:1fr auto;align-items:end}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:3px;gap:2px;align-self:center}
+.lang button{font:600 13px/1 var(--body);letter-spacing:.06em;color:var(--muted);background:transparent;border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lang button:focus-visible{outline:2px solid var(--apricot);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1 id="h1">Ереван и не только</h1>
+    <div class="lang" role="group" aria-label="Language / Язык">
+      <button type="button" id="lang-ru" data-lang="ru" aria-pressed="true">RU</button>
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <div class="rail-box" aria-label="Истории">
+    <div class="rail" id="rail"></div>
+  </div>
+
+  <nav class="chapters" id="nav" aria-label="Разделы"></nav>
+
+  <main id="feed"></main>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const IG = h => ({href:"https://www.instagram.com/" + h + "/", label:"@" + h, kind:"Instagram"});
+const MAP = (q, name) => ({href:"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q), mapName: name, kind:"Maps"});
+
+const chapters = [
+  {id:"adonts", title:"Рядом с Адонца", arm:"Թաղում", tone:"t-home",
+   blurb:"В двух шагах, в Арабкире.",
+   places:[
+    {name:"Be Friends", link:IG("befriends.evn"), where:"Адонца 6б3", kicker:"Бургеры и крылья",
+     says:"Кафе моих хороших друзей. Очень вкусные куриные крылышки и бургеры.",
+     fact:"Смэш-бургеры, баффало-крылья, лимонады, летняя терраса."},
+    {name:"Nero Bean", link:IG("nerobean"), where:"Адонца 6/1", kicker:"Обжарка кофе", added:true,
+     fact:"Specialty-кофе и свежеобжаренные зёрна с собой. Пн–сб, 10:00–20:00."},
+    {name:"Library Cafe", link:MAP("Library Cafe Yeraz Park, Yerevan","Library Cafe"), where:"Ераз-парк, Тбилисское шоссе 1/8", kicker:"Кафе с камином",
+     fact:"Уютное кафе в Ераз-парке: камин, кофе, горячий шоколад, синнабоны. С 11:00 до 23:00."},
+    {name:"Sloenka", link:IG("sloenka_evn"), where:"Папазяна 22/3, у Комитаса", kicker:"Кофе и выпечка",
+     fact:"Кофейня-пекарня со слоёной выпечкой, ближайший филиал."}
+   ]},
+  {id:"breakfast", title:"Завтраки", arm:"Նախաճաշ", tone:"t-breakfast",
+   blurb:"Ранние завтраки у Каскада и французские пекарни в центре.",
+   places:[
+    {name:"The Coast", link:IG("the_coast_yerevan"), where:"Каскад", kicker:"Сырники",
+     says:"Обожаю их сырники."},
+    {name:"Aperitivo", link:IG("aperitivo_italian_yvn"), where:"Таманяна 1/3, Каскад", kicker:"С 7 утра",
+     says:"Открываются в 7 утра и делают половинные порции, что редкость."},
+    {name:"Brioche", link:IG("briocheyerevan"), where:"Московян 31", kicker:"Французская пекарня",
+     fact:"Круассаны, бриоши и свежий хлеб."},
+    {name:"PAUL", link:IG("paul_armenia"), where:"Абовяна 8 · Теряна 5", kicker:"Буланжери",
+     fact:"Французская сеть пекарен: тартины, выпечка, кофе."}
+   ]},
+  {id:"coffee", title:"Кофе и работа", arm:"Սուրճ", tone:"t-coffee",
+   blurb:"Хороший кофе, стол и Wi-Fi.",
+   places:[
+    {name:"Nönö", link:IG("nonocoffee_evn"), where:"Павстоса Бузанда 7/10", kicker:"Кофе и выпечка",
+     fact:"Авторский кофе и своя выпечка."},
+    {name:"Sloenka", link:IG("sloenka_evn"), where:"Несколько филиалов", kicker:"Кофе и выпечка",
+     fact:"Кофейня-пекарня со слоёной выпечкой. Есть филиал на Папазяна."},
+    {name:"Surf Coffee", link:IG("surfcoffee.am"), where:"Туманяна · Сарьяна 1 · Каскад", kicker:"Кофе-бар",
+     fact:"Кофе-бар с несколькими точками в центре."},
+    {name:"SET", link:IG("set_evn"), where:"Сарьяна 17", kicker:"Завтрак и ноутбук",
+     says:"Хорошо только для завтраков, кофе и удалённой работы. Обеды у них ужасные."},
+    {name:"Mart", link:IG("mart.evn"), where:"Павстоса Бузанда 17", kicker:"Кофе и еда",
+     fact:"Кофе и еда, можно спокойно засесть на пару часов."},
+    {name:"J Space", link:IG("j_space_yerevan"), where:"Туманяна 35", kicker:"Городской хаб",
+     fact:"Большое пространство от Jazzve. Много столов для работы, вечером мероприятия."}
+   ]},
+  {id:"lunch", title:"Обед", arm:"Ճաշ", tone:"t-lunch",
+   blurb:"От террас у Каскада до лучших хинкали в городе.",
+   places:[
+    {name:"The Coast", link:IG("the_coast_yerevan"), where:"Каскад", kicker:"Тако",
+     says:"Тако у них классные."},
+    {name:"Limone", link:IG("limonecascade"), where:"Каскад", kicker:"Итальянская кухня",
+     fact:"Итальянское кафе у Каскада, открылось в 2017 году."},
+    {name:"Aperitivo", link:IG("aperitivo_italian_yvn"), where:"Таманяна 1/3, Каскад", kicker:"Половинные порции",
+     says:"Половинные порции, можно попробовать больше."},
+    {name:"Ambar Gastroshop", link:IG("ambar.gastroshop"), where:"ул. Пароняна", kicker:"Хамон и сэндвичи",
+     fact:"Хамонерия и деликатесы: сэндвичи, мясные нарезки, сыры."},
+    {name:"Family House", link:MAP("Family House, Mashtots 18, Yerevan","Family House"), where:"Маштоца 18, цокольный этаж", kicker:"Хинкали",
+     says:"Странное место, но у них лучшие хинкали в городе."},
+    {name:"Concept Coffeeshop Co.", link:IG("coffeeshop_yerevan"), where:"ул. Арама", kicker:"Концепт-кафе",
+     fact:"Большой концепт-филиал Coffeeshop Company с полноценным меню."},
+    {name:"De Angelo", link:IG("deangelo.evn"), where:"Пушкина 31", kicker:"Итальянская кухня",
+     fact:"Итальянское кафе на Пушкина."},
+    {name:"Borsch", link:IG("borsch.evn"), where:"Хоренаци 9", kicker:"Борщ и не только",
+     fact:"Борщ, пельмени и домашняя еда."},
+    {name:"Ramen Ten", link:IG("ramentenarm"), where:"Абовяна 2/5 · Сарьяна 1", kicker:"Рамен",
+     fact:"Японский рамен-бар у площади Республики."},
+    {name:"Pinsa!", link:IG("pinsa_yerevan"), where:"Анрапетутян 78", kicker:"Римская пицца",
+     fact:"Римская пинса, кофе и собственные десерты."},
+    {name:"J Space", link:IG("j_space_yerevan"), where:"Туманяна 35", kicker:"Меню на весь день",
+     fact:"Можно поработать с утра и остаться на обед."}
+   ]},
+  {id:"dinner", title:"Ужин", arm:"Ընթրիք", tone:"t-dinner",
+   blurb:"Стейки, вино, грузинская и индийская кухня, суши домой.",
+   places:[
+    {name:"Asador", link:IG("asador_yerevan"), where:"Геворга Кочара 21/7", kicker:"Гриль",
+     fact:"Ресторан с открытым огнём: стейки и не только."},
+    {name:"Urban", link:IG("urban.gastro.winebar"), where:"Арама 42", kicker:"Гастро- и винный бар",
+     fact:"Гастробар с большой винной картой."},
+    {name:"Suma Sushi", link:IG("suma.delivery"), where:"Только доставка", kicker:"Суши",
+     says:"Только доставка, но хорошее качество и цены."},
+    {name:"Bastard Meat Bar", link:IG("bastard_meatbar"), where:"ул. Туманяна", kicker:"Стейки",
+     says:"Сюда за стейком."},
+    {name:"Puri", link:IG("puri_evn"), where:"Ереван", kicker:"Грузинская кухня",
+     fact:"Грузинская кухня и горячий пури."},
+    {name:"Ruby", link:IG("ruby___restaurant"), where:"Абовяна 11", kicker:"Новое место",
+     fact:"Новый ресторан на Абовяна, открыт с утра до полуночи."},
+    {name:"Indian Mehak", link:IG("indianmehak_yerevan"), where:"Корюна 10", kicker:"Индийская кухня",
+     fact:"Индийский ресторан и бар, халяль."}
+   ]},
+  {id:"countryside", title:"За городом", arm:"Գյուղ", tone:"t-country",
+   blurb:"Поездки на день: Севан, Бюракан, Дилижан, Гарни.",
+   places:[
+    {name:"Kogovit", link:IG("kogovit"), where:"Цовагюх, Севан", kicker:"Чайный дом",
+     says:"Чайный дом в горах над Севаном."},
+    {name:"Остров чаек", arm:"Ճայերի կղզի", link:MAP("Ճայերի կղզի Սևան",""), where:"Озеро Севан", kicker:"Пикник",
+     says:"Берите пикник и проведите день у Севана."},
+    {name:"Sig & Chips", link:IG("sigandchips"), where:"Севанский полуостров", kicker:"Фиш-энд-чипс",
+     fact:"Фиш-энд-чипс из севанского сига, а ещё бургер, карпаччо и севиче из сига. Есть точка и в Ереване, на Алека Манукяна 12/1."},
+    {name:"Yasaman Sevan", link:IG("yasamanrestaurants"), where:"Цовагюх, трасса у Севана", kicker:"Рыба и морепродукты",
+     fact:"Рыбный ресторан Yasaman у озера: морепродукты, армянская и кавказская кухня."},
+    {name:"NoyLand", link:IG("noylandresort"), where:"Озеро Севан", kicker:"Курорт у воды",
+     fact:"Курорт на берегу Севана. У их ресторана Sunrise свой аккаунт: @sunrise.noyland."},
+    {name:"ZipWine", link:IG("zipwinebyurakan"), where:"Бюракан, Арагацотн", kicker:"Зиплайн и вино",
+     fact:"Эко-деревня: зиплайн, дегустация вина, прогулки."},
+    {name:"Conservatory", link:IG("conservatory.dilijan"), where:"Дилижан", kicker:"Кафе-оранжерея",
+     fact:"Кафе на втором этаже большой оранжереи, зелень выращивают тут же. Завтраки, specialty-кофе, натуральное вино на балконе."},
+    {name:"Cabinet", link:IG("cabinet.dilijan"), where:"Дилижан", kicker:"Ресторан и кафе",
+     fact:"В отреставрированной правительственной резиденции 1930-х. Терраса, уголок с винилом, европейская кухня с армянскими нотами."},
+    {name:"7 Qar", link:IG("7qar.garni"), where:"Гарни", kicker:"Вид на храм",
+     fact:"Терраса с видом на храм Гарни и ущелье. Хоровац, сухой лаваш с домашним сыром, можно посмотреть, как пекут лаваш в тонире."}
+   ]}
+];
+
+const UI = {
+  ru: {title:"Ереван и не только", open:"Открыть в", maps:"Картах", map:"карта", soon:"Ссылка скоро", added:"Новое",
+       stories:"Истории", sections:"Разделы",
+       footer:"Карточки открывают Instagram заведения, несколько — карту. Часы работы меняются, проверяйте свежие посты перед поездкой."},
+  en: {title:"Yerevan & Beyond", open:"Open on", maps:"Maps", map:"map", soon:"Link coming soon", added:"New",
+       stories:"Stories", sections:"Sections",
+       footer:"Cards open each place's Instagram, a few open a map. Hours change, so check their latest posts before a long drive."}
+};
+
+const EN_CH = {
+  adonts:["Near Adonts","Around the corner in Arabkir."],
+  breakfast:["Breakfast","Early starts by the Cascade, French bakeries in the centre."],
+  coffee:["Coffee & work","Good coffee, a table and Wi-Fi."],
+  lunch:["Lunch","From Cascade terraces to the best khinkali in town."],
+  dinner:["Dinner","Steak, wine, Georgian and Indian food, sushi delivered."],
+  countryside:["Countryside","Day trips: Sevan, Byurakan, Dilijan, Garni."]
+};
+
+/* English text per card, keyed "section:name". Fields: where, kicker, says, fact, name (only if different). */
+const EN = {
+  "adonts:Be Friends":{where:"Adonts 6b3", kicker:"Burgers & wings", says:"The café of my good friends. Very delicious chicken wings and burgers.", fact:"Smash burgers, buffalo wings, lemonades, a summer terrace."},
+  "adonts:Nero Bean":{where:"Adonts 6/1", kicker:"Coffee roastery", fact:"Specialty coffee and freshly roasted beans to take home. Mon–Sat, 10:00–20:00."},
+  "adonts:Library Cafe":{where:"Yeraz Park, Tbilisi Hwy 1/8", kicker:"Fireplace café", fact:"Cosy café in Yeraz Park: fireplace, coffee, hot chocolate, cinnamon rolls. 11:00 to 23:00."},
+  "adonts:Sloenka":{where:"Papazyan 22/3, by Komitas", kicker:"Coffee & bakery", fact:"Puff-pastry bakery café, the closest branch."},
+  "breakfast:The Coast":{where:"Cascade", kicker:"Syrniki", says:"Love their syrniki."},
+  "breakfast:Aperitivo":{where:"Tamanyan 1/3, Cascade", kicker:"Open at 7", says:"They open at 7am and have half portions, which is rare."},
+  "breakfast:Brioche":{where:"Moskovyan 31", kicker:"French bakery", fact:"Croissants, brioche and fresh bread."},
+  "breakfast:PAUL":{where:"Abovyan 8 · Teryan 5", kicker:"Boulangerie", fact:"The French bakery chain: tartines, pastries, coffee."},
+  "coffee:Nönö":{where:"Pavstos Buzand 7/10", kicker:"Coffee & bakery", fact:"Artisanal coffee and their own baking."},
+  "coffee:Sloenka":{where:"Several branches", kicker:"Coffee & bakery", fact:"Puff-pastry bakery café. There's a branch on Papazyan."},
+  "coffee:Surf Coffee":{where:"Tumanyan · Saryan 1 · Cascade", kicker:"Coffee bar", fact:"Coffee bar with several branches in the centre."},
+  "coffee:SET":{where:"Saryan 17", kicker:"Breakfast & laptops", says:"Only good for breakfast, coffee and remote work. Their lunch sucks."},
+  "coffee:Mart":{where:"Pavstos Buzand 17", kicker:"Coffee & food", fact:"Coffee and food, easy to settle in for a few hours."},
+  "coffee:J Space":{where:"Tumanyan 35", kicker:"Urban hub", fact:"Jazzve's big urban hub. Plenty of tables for laptop hours, events in the evening."},
+  "lunch:The Coast":{where:"Cascade", kicker:"Tacos", says:"The tacos are nice."},
+  "lunch:Limone":{where:"Cascade", kicker:"Italian", fact:"Italian café by the Cascade, open since 2017."},
+  "lunch:Aperitivo":{where:"Tamanyan 1/3, Cascade", kicker:"Half portions", says:"Half portions, so you can try more."},
+  "lunch:Ambar Gastroshop":{where:"Paronyan St", kicker:"Jamón & sandwiches", fact:"Jamonería and deli: sandwiches, cured meats, cheese."},
+  "lunch:Family House":{where:"Mashtots 18, basement", kicker:"Khinkali", says:"It's a strange place, but they have the best khinkali in town."},
+  "lunch:Concept Coffeeshop Co.":{where:"Aram St", kicker:"Concept café", fact:"The bigger concept branch of Coffeeshop Company, with a full menu."},
+  "lunch:De Angelo":{where:"Pushkin 31", kicker:"Italian", fact:"Italian café on Pushkin Street."},
+  "lunch:Borsch":{where:"Khorenatsi 9", kicker:"Borsch & more", fact:"Borsch, pelmeni and home-style food."},
+  "lunch:Ramen Ten":{where:"Abovyan 2/5 · Saryan 1", kicker:"Ramen", fact:"Japanese ramen bar near Republic Square."},
+  "lunch:Pinsa!":{where:"Hanrapetutyan 78", kicker:"Roman pizza", fact:"Roman pinsa, coffee and their own desserts."},
+  "lunch:J Space":{where:"Tumanyan 35", kicker:"All-day menu", fact:"Work there in the morning and stay for lunch."},
+  "dinner:Asador":{where:"Gevorg Kochar 21/7", kicker:"Grill", fact:"Open-fire restaurant: steaks and more."},
+  "dinner:Urban":{where:"Aram 42", kicker:"Gastro & wine bar", fact:"Gastrobar with a big wine list."},
+  "dinner:Suma Sushi":{where:"Delivery only", kicker:"Sushi", says:"Only delivery, but good quality and price."},
+  "dinner:Bastard Meat Bar":{where:"Tumanyan St", kicker:"Steak", says:"Go here for steak."},
+  "dinner:Puri":{where:"Yerevan", kicker:"Georgian", fact:"Georgian food and hot puri bread."},
+  "dinner:Ruby":{where:"Abovyan 11", kicker:"New", fact:"New restaurant on Abovyan, open from morning to midnight."},
+  "dinner:Indian Mehak":{where:"Koryun 10", kicker:"Indian", fact:"Indian restaurant and bar, halal."},
+  "countryside:Kogovit":{where:"Tsovagyugh, Sevan", kicker:"Tea house", says:"Tea house in the mountains above Sevan."},
+  "countryside:Остров чаек":{name:"Gull Island", where:"Lake Sevan", kicker:"Picnic", says:"Bring a picnic and spend the day by Lake Sevan."},
+  "countryside:Sig & Chips":{where:"Sevan peninsula", kicker:"Fish & chips", fact:"Fish and chips made with Sevan sig, plus a sig burger, carpaccio and ceviche. There's also a Yerevan branch at Alek Manukyan 12/1."},
+  "countryside:Yasaman Sevan":{where:"Tsovagyugh, Sevan highway", kicker:"Fish & seafood", fact:"Yasaman's lakeside restaurant: seafood, Armenian and Caucasian food."},
+  "countryside:NoyLand":{where:"Lake Sevan", kicker:"Lakeside resort", fact:"Resort on the shore of Sevan. Their Sunrise restaurant has its own account: @sunrise.noyland."},
+  "countryside:ZipWine":{where:"Byurakan, Aragatsotn", kicker:"Zipline & wine", fact:"Eco-village with ziplines, wine tasting and hikes."},
+  "countryside:Conservatory":{where:"Dilijan", kicker:"Greenhouse café", fact:"Café upstairs in a big greenhouse, with herbs grown on site. Breakfast, specialty coffee, natural wine on the balcony."},
+  "countryside:Cabinet":{where:"Dilijan", kicker:"Restaurant & café", fact:"In a restored 1930s government residence. Terrace, vinyl corner, European food with Armenian touches."},
+  "countryside:7 Qar":{where:"Garni", kicker:"Temple view", fact:"Terrace overlooking Garni Temple and the gorge. Khorovats, dry lavash with homemade cheese, and lavash baked in the tonir."}
+};
+
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const rail = document.getElementById("rail");
+const feed = document.getElementById("feed");
+const nav = document.getElementById("nav");
+
+function render(lang){
+  const T = UI[lang];
+  document.documentElement.lang = lang;
+  document.title = T.title;
+  document.getElementById("h1").textContent = T.title;
+  document.getElementById("foot").textContent = T.footer;
+  document.querySelector(".rail-box").setAttribute("aria-label", T.stories);
+  nav.setAttribute("aria-label", T.sections);
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+
+  let railHTML = "", feedHTML = "", navHTML = "";
+  const seen = new Set();
+  chapters.forEach(c => {
+    const title = lang === "en" ? EN_CH[c.id][0] : c.title;
+    const blurb = lang === "en" ? EN_CH[c.id][1] : c.blurb;
+    navHTML += `<a href="#${c.id}">${esc(title)}</a>`;
+    let cards = "";
+    c.places.forEach(p0 => {
+      const tr = lang === "en" ? (EN[c.id + ":" + p0.name] || {}) : {};
+      const p = Object.assign({}, p0, tr);
+      const L = p0.link;
+      const kind = L && L.kind === "Maps" ? T.maps : (L ? L.kind : "");
+      const label = L ? (L.kind === "Maps" ? (L.mapName ? L.mapName + " · " + T.map : p.name + " · " + T.map) : L.label) : p.name;
+      const initial = esc(p.name.replace(/^the\s+/i,"").charAt(0).toUpperCase());
+      if (!seen.has(p0.name)) {
+        seen.add(p0.name);
+        const tag = L ? `a href="${L.href}" target="_blank" rel="noopener"` : `div`;
+        railHTML += `<${tag} class="story" title="${esc(p.name)}"><span class="ring"><span class="${c.tone}">${initial}</span></span><small>${esc(p.name)}</small></${L ? "a" : "div"}>`;
+      }
+      const open = L ? `<span class="open">${T.open} ${kind} <span aria-hidden="true">↗</span></span>`
+                     : `<span class="open none">${T.soon}</span>`;
+      const inner = `
+        <div class="post-top">
+          <span class="avatar"><span class="${c.tone}">${initial}</span></span>
+          <span class="who"><b>${esc(label)}${p.added ? `<span class="chip">${T.added}</span>` : ''}</b><small>${esc(p.where)}</small></span>
+        </div>
+        <div class="tile ${c.tone}">
+          <div class="kicker">${esc(p.kicker)}</div>
+          <div class="big">${esc(p.name)}${p.arm ? `<div lang="hy" style="font-family:var(--arm);font-size:.5em;margin-top:6px">${p.arm}</div>` : ""}</div>
+          <div class="where">${esc(p.where)}</div>
+        </div>
+        <div class="caption">
+          ${p.says ? `<p class="says">${esc(p.says)}</p>` : ""}
+          ${p.fact ? `<p class="fact">${esc(p.fact)}</p>` : ""}
+        </div>
+        ${open}`;
+      cards += L ? `<a class="post" href="${L.href}" target="_blank" rel="noopener">${inner}</a>` : `<div class="post">${inner}</div>`;
+    });
+    feedHTML += `<section class="chapter" id="${c.id}">
+      <div class="chapter-head"><h2>${esc(title)}<span class="arm" lang="hy">${c.arm}</span></h2><p>${esc(blurb)}</p></div>
+      <div class="grid">${cards}</div></section>`;
+  });
+  rail.innerHTML = railHTML;
+  feed.innerHTML = feedHTML;
+  nav.innerHTML = navHTML;
+}
+
+let lang = "ru";
+try { const s = localStorage.getItem("guide-lang"); if (s === "en" || s === "ru") lang = s; } catch(e) {}
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang;
+  try { localStorage.setItem("guide-lang", lang); } catch(e) {}
+  render(lang);
+}));
+render(lang);
+if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+
+</script>
+
+</body>
+</html>
